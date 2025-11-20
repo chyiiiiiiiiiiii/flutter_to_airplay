@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_airplay/src/airplay_route_picker_view.dart';
+import 'airplay_route_picker_view.dart';
 
 /// This widget returns an AirplayRoutePicker button from native code,
 /// it can be added as a button or as an app bar icon, just like any widget.

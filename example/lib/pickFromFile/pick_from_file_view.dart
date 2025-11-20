@@ -35,8 +35,8 @@ class _PickFromFileViewState extends State<PickFromFileView> {
   }
 
   Future<String?> _getSaveFile(String assetPath) async {
-    Directory tempDir = await getTemporaryDirectory();
-    File tempFile = File('${tempDir.path}/temp_video.mp4');
+    final Directory tempDir = await getTemporaryDirectory();
+    final File tempFile = File('${tempDir.path}/temp_video.mp4');
 
     if (tempFile.existsSync()) {
       return tempFile.path;
@@ -47,13 +47,13 @@ class _PickFromFileViewState extends State<PickFromFileView> {
 
   Future<String> _saveAssetToTempDirectory(String assetPath) async {
     // Get the temporary directory
-    Directory tempDir = await getTemporaryDirectory();
+    final Directory tempDir = await getTemporaryDirectory();
 
     // Load the asset
-    ByteData data = await rootBundle.load(assetPath);
+    final ByteData data = await rootBundle.load(assetPath);
 
     // Create a file in the temporary directory
-    File tempFile = File('${tempDir.path}/temp_video.mp4');
+    final File tempFile = File('${tempDir.path}/temp_video.mp4');
 
     // Write the asset data to the file
     await tempFile.writeAsBytes(

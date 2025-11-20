@@ -5,10 +5,10 @@ class FlutterToAirplay {
 
   static Map<String, dynamic> colorToParams(Color color) {
     return {
-      'red': color.red,
-      'green': color.green,
-      'blue': color.blue,
-      'alpha': color.alpha,
+      'red': (color.r * 255).round(),
+      'green': (color.g * 255).round(),
+      'blue': (color.b * 255).round(),
+      'alpha': (color.a * 255).round(),
     };
   }
 }

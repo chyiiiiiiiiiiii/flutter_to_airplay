@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_airplay_example/customIcon/custom_icon_view.dart';
-import 'package:flutter_to_airplay_example/pickFromAsset/pick_from_asset_view.dart';
-import 'package:flutter_to_airplay_example/pickFromFile/pick_from_file_view.dart';
-import 'package:flutter_to_airplay_example/pickFromURL/pick_from_url_view.dart';
+
+import 'customIcon/custom_icon_view.dart';
+import 'pickFromAsset/pick_from_asset_view.dart';
+import 'pickFromFile/pick_from_file_view.dart';
+import 'pickFromURL/pick_from_url_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
                     return ListTile(
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        MaterialPageRoute<void>(
                           builder: (context) => PickFromAssetView(),
                         ),
                       ),
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
                     return ListTile(
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        MaterialPageRoute<void>(
                           builder: (context) => PickFromFileView(),
                         ),
                       ),
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
                     return ListTile(
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        MaterialPageRoute<void>(
                           builder: (context) => PickFromURLView(),
                         ),
                       ),
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
                     return ListTile(
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        MaterialPageRoute<void>(
                           builder: (context) => CustomIconView(),
                         ),
                       ),

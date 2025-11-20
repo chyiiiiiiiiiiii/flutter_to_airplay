@@ -13,7 +13,7 @@ import Flutter
 
 class FlutterAVPlayer: NSObject, FlutterPlatformView {
     private var _flutterAVPlayerViewController : AVPlayerViewController;
-    
+
     private var looper : AVPlayerLooper?
     private var playerItem: AVPlayerItem?
 
@@ -25,28 +25,29 @@ class FlutterAVPlayer: NSObject, FlutterPlatformView {
 
         _flutterAVPlayerViewController = AVPlayerViewController()
         _flutterAVPlayerViewController.viewDidLoad()
-        
+
         let queuePlayer = AVQueuePlayer()
 
         if let urlString = arguments["url"] {
             let url = URL(string: urlString as! String)!
             playerItem = AVPlayerItem(url: url)
         } else if let filePath = arguments["file"] {
-            let item = AVPlayerItem(url: URL(string: urlString as! String)!)
+            let item = AVPlayerItem(url: URL(string: filePath as! String)!)
             _flutterAVPlayerViewController.player = AVPlayer(playerItem: item)
-        } 
+        }
         else if let filePath = arguments["asset"] {
             let appDelegate = UIApplication.shared.delegate as! FlutterAppDelegate
-            let vc = appDelegate.window.rootViewController as! FlutterViewController
-            let lookUpKey = vc.lookupKey(forAsset: filePath as! String)
-            
-            if let path = Bundle.main.path(forResource: lookUpKey, ofType: nil) {
-                playerItem = AVPlayerItem(url: URL(fileURLWithPath: path))
-            } else {
-                playerItem = AVPlayerItem(url: URL(fileURLWithPath: filePath as! String))
+            if let window = appDelegate.window, let vc = window.rootViewController as? FlutterViewController {
+                let lookUpKey = vc.lookupKey(forAsset: filePath as! String)
+
+                if let path = Bundle.main.path(forResource: lookUpKey, ofType: nil) {
+                    playerItem = AVPlayerItem(url: URL(fileURLWithPath: path))
+                } else {
+                    playerItem = AVPlayerItem(url: URL(fileURLWithPath: filePath as! String))
+                }
             }
         }
-        
+
         if let playerItem = playerItem {
             if (autoLoop){
                 looper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
@@ -54,7 +55,7 @@ class FlutterAVPlayer: NSObject, FlutterPlatformView {
             } else {
                 _flutterAVPlayerViewController.player = AVPlayer(playerItem: playerItem)
             }
-            
+
             _flutterAVPlayerViewController.player?.play()
         }
     }

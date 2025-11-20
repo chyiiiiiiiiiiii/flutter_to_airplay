@@ -7,17 +7,12 @@ import 'package:flutter/services.dart';
 
 class FlutterAVPlayerView extends StatelessWidget {
   const FlutterAVPlayerView({
-    Key? key,
+    super.key,
     this.urlString,
     this.filePath,
     this.assetPath,
     this.autoLoop = false,
-  })  : assert(urlString != null || filePath != null),
-  
-  const FlutterAVPlayerView(
-      {Key? key, this.urlString, this.filePath, this.assetPath})
-      : assert(urlString != null || filePath != null || assetPath != null),
-        super(key: key);
+  }) : assert(urlString != null || filePath != null || assetPath != null);
 
   /// URL string for the video file, if the file is to be played from the network.
   final String? urlString;
@@ -27,7 +22,7 @@ class FlutterAVPlayerView extends StatelessWidget {
 
   /// File name/path for the video file that needs to be played from the Temporary or Document directory.
   final String? filePath;
-  
+
   /// Boolean to enable/disable autoLoop
   final bool autoLoop;
 
@@ -37,7 +32,7 @@ class FlutterAVPlayerView extends StatelessWidget {
   /// It is preferred that only one of urlString or filePath is used at a time,
   /// if both are provided, application will prioritise urlString.
   Map<String, dynamic> getCreateParams() {
-    Map<String, dynamic> params = {
+    final Map<String, dynamic> params = {
       'class': 'FlutterAVPlayerView',
     };
 
@@ -57,7 +52,7 @@ class FlutterAVPlayerView extends StatelessWidget {
       creationParams:
           getCreateParams(), // parameters to load the video in native code.
       creationParamsCodec:
-          StandardMessageCodec(), // messenger to decode message between flutter and native.
+          const StandardMessageCodec(), // messenger to decode message between flutter and native.
     );
   }
 }
